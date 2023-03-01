@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SepetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adisyonlar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiparisID" Type="nvarchar" MaxLength="100" />
+          <Property Name="DurumID" Type="nvarchar" MaxLength="100" />
+          <Property Name="MusteriAdSoyad" Type="nvarchar" MaxLength="200" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="200" />
+          <Property Name="Adres" Type="text" />
+          <Property Name="Odeme" Type="nvarchar" MaxLength="100" />
+          <Property Name="Tarih" Type="datetime" />
+          <Property Name="Durum" Type="nvarchar" MaxLength="100" />
+          <Property Name="GelenBilgi" Type="text" />
+          <Property Name="SiparisToplam" Type="nvarchar" MaxLength="100" />
+          <Property Name="AraToplam" Type="nvarchar" MaxLength="100" />
+          <Property Name="KDV" Type="nvarchar" MaxLength="100" />
+          <Property Name="SiparisNot" Type="text" />
+          <Property Name="AktifMi" Type="bit" />
+          <Property Name="Kabul" Type="bit" />
+          <Property Name="Ret" Type="bit" />
+          <Property Name="Hazirlaniyor" Type="bit" />
+          <Property Name="Yolda" Type="bit" />
+          <Property Name="Teslim" Type="bit" />
+        </EntityType>
+        <EntityType Name="Kategoriler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KategoriID" Type="nvarchar" MaxLength="50" />
+          <Property Name="KategoriAdi" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Kullanici">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="200" />
+          <Property Name="ClientSecret" Type="nvarchar" MaxLength="200" />
+          <Property Name="YonlendirmeAdresi" Type="nvarchar" MaxLength="200" />
+          <Property Name="FirmaAdı" Type="nvarchar" MaxLength="200" />
+          <Property Name="AktifMi" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UrunBilgi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UrunID" Type="nvarchar" MaxLength="100" />
+          <Property Name="UrunAdı" Type="nvarchar" MaxLength="100" />
+          <Property Name="UrunFiyat" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Urunler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UrunID" Type="nvarchar" MaxLength="100" />
+          <Property Name="UrunAdı" Type="nvarchar" MaxLength="200" />
+          <Property Name="UrunFiyat" Type="nvarchar" MaxLength="100" />
+          <Property Name="SiparisID" Type="nvarchar" MaxLength="100" />
+          <Property Name="Adet" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="SepetModelStoreContainer">
+          <EntitySet Name="Adisyonlar" EntityType="Self.Adisyonlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategoriler" EntityType="Self.Kategoriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanici" EntityType="Self.Kullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UrunBilgi" EntityType="Self.UrunBilgi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Urunler" EntityType="Self.Urunler" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SepetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Kullanici">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ClientSecret" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="YonlendirmeAdresi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FirmaAdı" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AktifMi" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SepetEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Kullanici" EntityType="Self.Kullanici" />
+          <EntitySet Name="Adisyonlar" EntityType="SepetModel.Adisyonlar" />
+          <EntitySet Name="Kategoriler" EntityType="SepetModel.Kategoriler" />
+          <EntitySet Name="UrunBilgi" EntityType="SepetModel.UrunBilgi" />
+          <EntitySet Name="Urunler" EntityType="SepetModel.Urunler" />
+        </EntityContainer>
+        <EntityType Name="Adisyonlar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MusteriAdSoyad" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Odeme" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+          <Property Name="Durum" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AktifMi" Type="Boolean" />
+          <Property Name="GelenBilgi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SiparisID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SiparisToplam" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AraToplam" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="KDV" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SiparisNot" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DurumID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Kabul" Type="Boolean" />
+          <Property Name="Ret" Type="Boolean" />
+          <Property Name="Hazirlaniyor" Type="Boolean" />
+          <Property Name="Yolda" Type="Boolean" />
+          <Property Name="Teslim" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Kategoriler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KategoriID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KategoriAdi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UrunBilgi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UrunID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UrunAdı" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UrunFiyat" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Urunler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UrunID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UrunAdı" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UrunFiyat" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SiparisID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Adet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SepetModelStoreContainer" CdmEntityContainer="SepetEntities">
+          <EntitySetMapping Name="Kullanici">
+            <EntityTypeMapping TypeName="SepetModel.Kullanici">
+              <MappingFragment StoreEntitySet="Kullanici">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ClientSecret" ColumnName="ClientSecret" />
+                <ScalarProperty Name="YonlendirmeAdresi" ColumnName="YonlendirmeAdresi" />
+                <ScalarProperty Name="FirmaAdı" ColumnName="FirmaAdı" />
+                <ScalarProperty Name="AktifMi" ColumnName="AktifMi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adisyonlar">
+            <EntityTypeMapping TypeName="SepetModel.Adisyonlar">
+              <MappingFragment StoreEntitySet="Adisyonlar">
+                <ScalarProperty Name="Teslim" ColumnName="Teslim" />
+                <ScalarProperty Name="Yolda" ColumnName="Yolda" />
+                <ScalarProperty Name="Hazirlaniyor" ColumnName="Hazirlaniyor" />
+                <ScalarProperty Name="Ret" ColumnName="Ret" />
+                <ScalarProperty Name="Kabul" ColumnName="Kabul" />
+                <ScalarProperty Name="DurumID" ColumnName="DurumID" />
+                <ScalarProperty Name="SiparisNot" ColumnName="SiparisNot" />
+                <ScalarProperty Name="KDV" ColumnName="KDV" />
+                <ScalarProperty Name="AraToplam" ColumnName="AraToplam" />
+                <ScalarProperty Name="SiparisToplam" ColumnName="SiparisToplam" />
+                <ScalarProperty Name="SiparisID" ColumnName="SiparisID" />
+                <ScalarProperty Name="GelenBilgi" ColumnName="GelenBilgi" />
+                <ScalarProperty Name="AktifMi" ColumnName="AktifMi" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Odeme" ColumnName="Odeme" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="MusteriAdSoyad" ColumnName="MusteriAdSoyad" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategoriler">
+            <EntityTypeMapping TypeName="SepetModel.Kategoriler">
+              <MappingFragment StoreEntitySet="Kategoriler">
+                <ScalarProperty Name="KategoriAdi" ColumnName="KategoriAdi" />
+                <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UrunBilgi">
+            <EntityTypeMapping TypeName="SepetModel.UrunBilgi">
+              <MappingFragment StoreEntitySet="UrunBilgi">
+                <ScalarProperty Name="UrunFiyat" ColumnName="UrunFiyat" />
+                <ScalarProperty Name="UrunAdı" ColumnName="UrunAdı" />
+                <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Urunler">
+            <EntityTypeMapping TypeName="SepetModel.Urunler">
+              <MappingFragment StoreEntitySet="Urunler">
+                <ScalarProperty Name="Adet" ColumnName="Adet" />
+                <ScalarProperty Name="SiparisID" ColumnName="SiparisID" />
+                <ScalarProperty Name="UrunFiyat" ColumnName="UrunFiyat" />
+                <ScalarProperty Name="UrunAdı" ColumnName="UrunAdı" />
+                <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
